@@ -1,4 +1,4 @@
-FROM fedora-minimal
+FROM registry.fedoraproject.org/fedora-minimal:latest
 
 RUN microdnf -y install python3 python-fastapi tar vi pip
 RUN pip install uvicorn[standard] unalix python-multipart

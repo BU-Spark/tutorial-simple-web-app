@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <script type="text/JavaScript">
+    function submitCleanUrl(){
+        var dirty_url = document.getElementById("dirty_url").value;
+        var myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
+        var urlencoded = new URLSearchParams();
+        urlencoded.append("dirty_url", dirty_url);
+        var requestOptions = {
+          method: 'POST',
+          headers: myHeaders,
+          body: urlencoded,
+          redirect: 'follow'
+        };
+        fetch("http://128.31.27.157:8000/clean-url", requestOptions)
+                .then(response => response.text())
+                .then(result => document.getElementById("output").innerHTML =result)
+                .catch(error => console.log('error', error));
+        // display_message.innerHTML= message;
+    };
+  </script>
+  <body>
+    <h1>The URL Cleaner</h1>
+    <h2>Built by Spark!</h2>
+    <label
+      >URL:
+      <input name="dirty_url" type="url" id="dirty_url" />
+    </label>
+    <button id="submit_button" onclick="submitCleanUrl()">Submit</button>
+    <p id="output">Output:</p>
+  </body>
+</html>
