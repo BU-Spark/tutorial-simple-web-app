@@ -2,8 +2,13 @@ from fastapi import FastAPI, Form
 import urllib.parse
 from unalix import clear_url, unshort_url
 import logging
-
+from fastapi.middleware.cors import CORSMiddleware
 app = FastAPI()
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+)
 
 @app.get("/")
 async def root():
