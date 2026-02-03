@@ -1,0 +1,15 @@
+FROM registry.fedoraproject.org/fedora-minimal:latest
+
+RUN microdnf -y install cmatrix cowsay sl figlet
+
+RUN mkdir /opt/app
+WORKDIR /opt/app
+
+ADD fun-commands.sh /opt/app/fun-commands.sh
+RUN chmod a+x /opt/app/fun-commands.sh
+
+VOLUME [ "/opt/app" ]
+
+#ENTRYPOINT [ "/bin/bash",  "-c" ]
+ENTRYPOINT [ "cowsay" ]
+#ENTRYPOINT [ "/opt/app/fun-commands.sh" ]
